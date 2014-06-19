@@ -23,6 +23,9 @@ ad_realm="invis-net.loc"
 # ad_domain=`getconfdata "Workgroup" "2"`
 ad_domain="INVIS-NET"
 
+# ad_ip=`getconfdata "IP" "2"`
+ad_ip="192.168.240.218" 
+
 # Passwort vorher abfragen!
 ad_adminpass="P4ssw0rd*"
 
@@ -43,10 +46,12 @@ logfile=$0.log
 
 
 # Domain aufbauen
-samba-tool domain provision --realm="$ad_realm" --domain="$ad_domain" --adminpass="$ad_adminpass" --server-role="$ad_server_role" --use-rfc2307 2>&1 | tee -a $logfile
+samba-tool domain provision --realm="$ad_realm" --domain="$ad_domain" --host-ip="$ad_ip" --adminpass="$ad_adminpass" --server-role="$ad_server_role" --use-rfc2307 2>&1 | tee -a $logfile
 provresult=${PIPESTATUS[0]}
 
 if [[ $provresult != 0 ]]; then
   echo "Provisioning meldet Fehler $provresult! Script wird beendet!"
   exit $provresult
 fi
+
+cp /var/lib/samba/private/krb5.conf /etc/krb5.conf
