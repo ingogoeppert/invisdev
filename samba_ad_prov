@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#
+# Script um die Samba AD DC Domain aufzubauen
+# Siehe auch:
+# http://wiki.samba.org/index.php/Samba_AD_DC_HOWTO
+#
+
+## Variablen, ggf. aus der config oder sine uebernehmen
+
+# "realm" bei AD DC = "Domain" im sine
+# ad_realm=`getconfdata "Domain" "2"`
+ad_realm="invis-net.loc"
+
+# "domain" bei AD DC = "Workgroup" im sine
+# ad_domain=`getconfdata "Workgroup" "2"`
+ad_domain="INVIS-NET"
+
+## 
+
+# Domain aufbauen
+samba-tool domain provision 
