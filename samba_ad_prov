@@ -6,6 +6,11 @@
 # http://wiki.samba.org/index.php/Samba_AD_DC_HOWTO
 #
 
+# Todo:
+# Variablen aus config nehmen
+# Passwort abfragen
+
+
 ## Variablen, ggf. aus der config oder sine uebernehmen
 
 # "realm" bei AD DC = "Domain" im sine
@@ -16,7 +21,21 @@ ad_realm="invis-net.loc"
 # ad_domain=`getconfdata "Workgroup" "2"`
 ad_domain="INVIS-NET"
 
-## 
+# Passwort vorher abfragen!
+ad_adminpass="P4ssw0rd*"
+
+# Bisher nur dc unterstuezt
+ad_server_role="dc"
+
+# Domain Function level
+# --function-level="2003"
+# Default: 2003, moeglich 2008, 2008_r2. Wir verwenden den aktuellen Default und lassen es weg
+
+# Fuer UNIX UID/GID RFC2307 aktiv
+# --use-rfc2307
+
+## ####################################################
+
 
 # Domain aufbauen
-samba-tool domain provision 
+samba-tool domain provision --realm="$ad_realm" --domain="$ad_domain" --adminpass="$ad_adminpass" --server-role="$ad_server_role" --use-rfc2307
