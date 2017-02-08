@@ -3,4 +3,5 @@
 3. "git checkout Branch_1" (verwenden, lokal)
 4. "git push origin Branch_1" (auch remote bekannt machen)
 5. Das veränderte log jetzt in Branch_1 einfügen.
+6. Und jetzt ein Nicht Build Test
 
