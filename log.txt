@@ -1,3 +1,4 @@
 1. Steht auf master.
 2. Und hier wieder weiter mit dem master nach "git checkout master"
 3. Test für Build...
+4. Test für push
